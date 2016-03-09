@@ -20,7 +20,7 @@ public class ConsoleInput {
 		
 		int motherAge;			// the mother's age
 		int userAge;			// the user's age
-		
+		int birthAge;			// the mothers age when the user was born
 		
 		
 		System.out.println("What is your mother's name?");
@@ -34,14 +34,12 @@ public class ConsoleInput {
 		
 		System.out.println("What is your birth date?");
 		userAge = Integer.parseInt(read.nextLine());
+		
+		birthAge = userAge - motherAge;
+		
+		
+		System.out.println("Your mothers age when you were born, " + userName + ", was " + birthAge + ".");
 
-		
-		
-		
-		System.out.println(motherName);
-		System.out.println(userName);
-		System.out.println(motherAge);
-		System.out.println(userAge);
 	}
 
 }
