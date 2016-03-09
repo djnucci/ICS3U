@@ -3,7 +3,7 @@ package nucci;
 import java.util.Scanner;
 
 /*
- * HelloWorld.java
+ * ConsoleInput.java
  * This program calculates the age of their mother when they were born
  * Daniel Nucci
  * March 8th, 2016
