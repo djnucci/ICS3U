@@ -28,19 +28,19 @@ public class ArithmaticExpressions {
 		int numPow;
 		double numSqrt;
 
-		System.out.println("Hello user, please enter your first number.");
+		System.out.println("Hello user, please enter your first integer.");
 		numOne = Integer.parseInt(read.nextLine());
 
-		System.out.println("Please enter your second number.");
+		System.out.println("Please enter your second integer.");
 		numTwo = Integer.parseInt(read.nextLine());
 
-		System.out.println("Please enter your third number.");
+		System.out.println("Please enter your third integer.");
 		numThree = Integer.parseInt(read.nextLine());
 
-		System.out.println("Please enter your fourth number.");
+		System.out.println("Please enter your fourth integer.");
 		numFour = Integer.parseInt(read.nextLine());
 
-		System.out.println("Please enter your fifth number.");
+		System.out.println("Please enter your fifth integer.");
 		numFive = Integer.parseInt(read.nextLine());
 
 		System.out.println("__________________________________________________________________________________________________________________________________________________________________________________________________");
