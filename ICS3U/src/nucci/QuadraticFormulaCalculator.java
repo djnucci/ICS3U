@@ -33,7 +33,7 @@ public class QuadraticFormulaCalculator {
 		System.out.println("Please enter a 'c' value.");
 		cValue = Double.parseDouble(read.nextLine());
 
-		if ((Math.pow(bValue, 2) - (4 * aValue * cValue)) >= 0) {
+		if ((Math.pow(bValue, 2) - (4 * aValue * cValue)) >= 0 || aValue == 0) {
 			firstRoot = ((-bValue + Math.sqrt(Math.pow(bValue, 2) - (4 * aValue * cValue))) / (2 * aValue));
 			secondRoot = ((-bValue - Math.sqrt(Math.pow(bValue, 2) - (4 * aValue * cValue))) / (2 * aValue));
 			System.out.println("These are your roots:" + answer.format(firstRoot) + ", " + answer.format(secondRoot));
