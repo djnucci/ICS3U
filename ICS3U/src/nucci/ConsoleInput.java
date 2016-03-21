@@ -15,13 +15,16 @@ public class ConsoleInput {
 
 		Scanner read = new Scanner(System.in);
 
+		//names
 		String motherName; // the mother's name
 		String userName; // the user's name
 
+		//ages
 		int motherAge; // the mother's age
 		int userAge; // the user's age
 		int birthAge; // the mothers age when the user was born
 
+		//questions
 		System.out.println("What is your mother's name?");
 		motherName = read.nextLine();
 
@@ -36,7 +39,8 @@ public class ConsoleInput {
 
 		birthAge = userAge - motherAge;
 
-		System.out.println("Your mother, " + motherName + ",was aged when you were born, " + userName + ", was " + birthAge + ".");
+		//print age
+		System.out.println("Your mother, " + motherName + ", was aged when you were born, " + userName + ", was " + birthAge + ".");
 
 	}
 

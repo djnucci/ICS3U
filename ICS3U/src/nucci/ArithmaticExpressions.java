@@ -14,12 +14,14 @@ public class ArithmaticExpressions {
 
 		Scanner read = new Scanner(System.in);
 
+		//ints
 		int numOne;
 		int numTwo;
 		int numThree;
 		int numFour;
 		int numFive;
 
+		//end values
 		int numSum;
 		int numSub;
 		int numProd;
@@ -28,6 +30,7 @@ public class ArithmaticExpressions {
 		int numPow;
 		double numSqrt;
 
+		//get ints
 		System.out.println("Hello user, please enter your first integer.");
 		numOne = Integer.parseInt(read.nextLine());
 
@@ -45,6 +48,7 @@ public class ArithmaticExpressions {
 
 		System.out.println("__________________________________________________________________________________________________________________________________________________________________________________________________");
 
+		//do calculations
 		numSum = numOne + numTwo + numThree + numFour + numFive;
 		numSub = numThree - numTwo;
 		numProd = numOne * numFive;
@@ -53,6 +57,7 @@ public class ArithmaticExpressions {
 		numPow = (int) Math.pow(numOne, numThree);
 		numSqrt = Math.sqrt(numFive);
 
+		//print answers
 		System.out.println("The sum of all five numbers is: " + numSum);
 		System.out.println("The result after subtracting the second number from the third is: " + numSub);
 		System.out.println("The product of the first and fifth numbers is: " + numProd);
