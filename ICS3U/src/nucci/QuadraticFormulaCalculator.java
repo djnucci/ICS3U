@@ -15,7 +15,7 @@ public class QuadraticFormulaCalculator {
 
 		Scanner read = new Scanner(System.in);
 
-		DecimalFormat answer = new DecimalFormat("0.##");
+		DecimalFormat answer = new DecimalFormat("0.0#");
 
 		double aValue;
 		double bValue;
