@@ -30,8 +30,8 @@ public class IntBasicIf {
 			System.out.println("The number you entered is negative.");
 		}
 		
-		//check if divisible by 7
-		if (userNum % 7 == 0) {
+		//check if divisible by 7 and is not zero
+		if (userNum % 7 == 0 && userNum != 0) {
 			System.out.println("The number you entered is divisible by 7.");
 		}
 		else {
