@@ -8,6 +8,7 @@ import java.util.Scanner;
  * Daniel Nucci
  * March 9th, 2016
  */
+
 public class ArithmaticExpressions {
 
 	public static void main(String[] args) {
@@ -27,7 +28,7 @@ public class ArithmaticExpressions {
 		int numProd;
 		double numQuot;
 		int numRem;
-		int numPow;
+		int numPow;    
 		double numSqrt;
 
 		//get ints
