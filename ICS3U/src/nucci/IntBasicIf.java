@@ -15,7 +15,7 @@ public class IntBasicIf {
 		
 		Scanner read = new Scanner(System.in);
 		
-		//user number
+		//user integer
 		int userNum;
 		
 		//get number from user
