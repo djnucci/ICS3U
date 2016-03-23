@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
  * NameRandoms.java
- * this program asks for a number then 
+ * this program asks for a name then says it likes or does not like the name 
  * Daniel Nucci
  * March 23th, 2016
  */

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
  * IntegerBasicIf.java
- * this program asks for a number then 
+ * this program asks for a number then prints some stuff
  * Daniel Nucci
  * March 22th, 2016
  */
