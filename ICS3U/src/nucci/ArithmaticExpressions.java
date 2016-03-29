@@ -13,8 +13,11 @@ public class ArithmaticExpressions {
 
 	public static void main(String[] args) {
 
+		boolean isFinished = false;
+		String finish;
 		Scanner read = new Scanner(System.in);
 
+		while (!isFinished) {
 		//ints
 		int numOne;
 		int numTwo;
@@ -66,6 +69,17 @@ public class ArithmaticExpressions {
 		System.out.println("The remainder when dividing the fourth number by the second is: " + numRem);
 		System.out.println("The first number raised to the power of the third number is: " + numPow);
 		System.out.println("The square root of the fifth number is: " + numSqrt);
+		
+		
+		System.out.println("Continue: y/n ?");
+		finish = read.nextLine();
+		
+		if (finish.equals("y")) {
+			isFinished = false;
+		}
+		else {
+			isFinished = true;
+		}
+		}
 	}
-
 }
