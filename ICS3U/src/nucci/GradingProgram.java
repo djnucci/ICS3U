@@ -13,13 +13,16 @@ public class GradingProgram {
 	public static void main(String[] args) {
 
 		Scanner read = new Scanner(System.in);
-
+		
+		//variables
 		int numTests;
 		int temp;
 
+		//ask for # of tests
 		System.out.println("How many tests are you entering?");
 		numTests = read.nextInt();
 
+		//for loop to get grades
 		for (int i = 0; i < numTests; i++) {
 			System.out.println("What is the percent of the test?");
 			temp = read.nextInt();
