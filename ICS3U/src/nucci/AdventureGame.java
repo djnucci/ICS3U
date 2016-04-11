@@ -20,7 +20,7 @@ public class AdventureGame {
 
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Pic = tk.getImage("12186061-a-wacky-cartoon-water-drop-character.jpg");
-		log.drawImage(Pic, 10, 10, 50, 50, ImgObs);
+		log.drawImage(Pic, 10, 10, 50, 50, null);
 		Thread.sleep(1000);
 		log.close();
 		

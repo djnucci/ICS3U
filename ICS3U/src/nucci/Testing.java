@@ -1,26 +1,29 @@
 package nucci;
 
-import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.ImageObserver;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import hsa_new.Console;
 
 public class Testing {
 
-	public static ImageObserver ImgObs;
-	public static Image pic;
+	public static BufferedImage pic = null;
 
 	public static void main(String[] args) {
-
-		Console log = new Console(50, 150);
-		Toolkit tk = Toolkit.getDefaultToolkit();
-
-		pic = tk.getImage("Wii U.jpg");
-
-		//log.prepareImage(Pic, 10, 10, ImgObs);
 		
-		log.drawImage(pic, 10, 10, 100, 100, ImgObs);
+		Console log = new Console(50, 150);
+
+		try {
+			pic = ImageIO.read(Testing.class.getResourceAsStream("/Wii U.jpg"));
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		log.drawImage(pic, 0, 0, 100, 100, null);
 		
 	}
 
