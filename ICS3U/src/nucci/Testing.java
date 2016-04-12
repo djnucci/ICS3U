@@ -1,6 +1,5 @@
 package nucci;
 
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -23,7 +22,7 @@ public class Testing {
 			e.printStackTrace();
 		}
 
-		log.drawImage(pic, 0, 0, 100, 100, null);
+		log.drawImage(pic, 0, 0, 200, 200, null);
 		
 	}
 
