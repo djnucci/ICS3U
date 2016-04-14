@@ -1,5 +1,6 @@
 package nucci;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,6 +21,10 @@ public class AdventureGame {
 	public static BufferedImage forestPic 						= null;
 	public static BufferedImage goldPic 						= null;
 	public static BufferedImage homePic							= null;
+	public static BufferedImage loadingBar100					= null;
+	public static BufferedImage loadingBar75					= null;
+	public static BufferedImage loadingBar50					= null;
+	public static BufferedImage loadingBar25					= null;
 	public static BufferedImage moreGuardsPic					= null;
 	public static BufferedImage moreDesertPic 					= null;
 	public static BufferedImage mummyPic 						= null;
@@ -38,13 +43,20 @@ public class AdventureGame {
 	public static void main(String[] args) throws InterruptedException {
 
 		Console log = new Console(50, 150);
+		log.setTextColour(Color.GREEN);
+		log.setTextBackgroundColor(Color.BLACK);
 		log.println("Please wait...");
 		
 		try{
+			loadingBar25 = ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 25%.jpg"));
+			loadingBar50 = ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 50%.jpg"));
+			loadingBar75 = ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 75%.jpg"));	
+			loadingBar100 = ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 100%.jpg"));
 			bridgePic = ImageIO.read(Testing.class.getResourceAsStream("/bridge.jpg"));
 			camelPic = ImageIO.read(Testing.class.getResourceAsStream("/camel.jpg"));
 			castlePic = ImageIO.read(Testing.class.getResourceAsStream("/castle.jpg"));
 			desertPic = ImageIO.read(Testing.class.getResourceAsStream("/desert.jpg"));
+			log.drawImage(loadingBar25, 0, 0, 500, 500, null);
 			forestPathPic = ImageIO.read(Testing.class.getResourceAsStream("/Forest Path.jpg"));
 			forestPic = ImageIO.read(Testing.class.getResourceAsStream("/Forest.jpg"));
 			goldPic = ImageIO.read(Testing.class.getResourceAsStream("/gold.jpg"));
@@ -52,17 +64,20 @@ public class AdventureGame {
 			moreGuardsPic = ImageIO.read(Testing.class.getResourceAsStream("/more guards.jpg"));
 			moreDesertPic = ImageIO.read(Testing.class.getResourceAsStream("/more desert.jpg"));
 			mummyPic = ImageIO.read(Testing.class.getResourceAsStream("/mummy.jpg"));
+			log.drawImage(loadingBar50, 0, 0, 500, 500, null);
 			playerPic = ImageIO.read(Testing.class.getResourceAsStream("/player.jpg"));
 			princessPic = ImageIO.read(Testing.class.getResourceAsStream("/princess.jpg"));	
-			pyramidHallwayPic = ImageIO.read(Testing.class.getResourceAsStream("/pyramid hallway.jpg"));		
+			pyramidHallwayPic = ImageIO.read(Testing.class.getResourceAsStream("/pyramid hallway.jpg"));
 			pyramidPic = ImageIO.read(Testing.class.getResourceAsStream("/pyramid.jpg"));		
 			skeletonArmyPic = ImageIO.read(Testing.class.getResourceAsStream("/skeleton army.jpg"));		
 			swordPic = ImageIO.read(Testing.class.getResourceAsStream("/sword.jpg"));		
-			thronePic = ImageIO.read(Testing.class.getResourceAsStream("/throne.jpg"));		
+			thronePic = ImageIO.read(Testing.class.getResourceAsStream("/throne.jpg"));	
+			log.drawImage(loadingBar75, 0, 0, 500, 500, null);
 			trollPic = ImageIO.read(Testing.class.getResourceAsStream("/troll.jpg"));		
 			tunnelPic = ImageIO.read(Testing.class.getResourceAsStream("/tunnel.jpg"));
 			yellowBrickRoadPic = ImageIO.read(Testing.class.getResourceAsStream("/yellow brick road.jpg"));
 			yellowBrickRoadWithFriendsPic = ImageIO.read(Testing.class.getResourceAsStream("/Yellow_Brick_Road and friends.jpg"));
+			log.drawImage(loadingBar100, 0, 0, 500, 500, null);
 		
 		}catch(IOException e){
 			e.printStackTrace();
@@ -78,9 +93,14 @@ public class AdventureGame {
 		String replay;
 		String userGuess;
 		int triesMummy = 3;
+		boolean error;
 
 		
 		while (playAgain == true) {
+			for (int i = 0; i < 10; i++){
+				userInput[0][i] = null;
+				userInput[1][i] = null;
+			}
 			log.clear();
 			log.drawImage(tunnelPic, 0, 0, 750, 750, null);
 			log.println("Run run run! You are a thief who has just stolen gold from a castle!");
@@ -89,6 +109,7 @@ public class AdventureGame {
 			userInput[0][0] = log.readLine();
 			log.clear();
 
+			do{
 			if (userInput[0][0].equalsIgnoreCase("forest")) {
 				log.println(
 						"The gaurds chase you into the forest! You get to a clearing, and see a large tree. Do you hide in the tree or keep running? (hide in tree/keep running");
@@ -252,7 +273,10 @@ public class AdventureGame {
 							"You keep walking, and begen to feel tired. You start to feel thursty. You die of dehydration.");
 					death = true;
 				}
+			} else {
+				error = true;
 			}
+			}while(error = true);
 			if (death = true) {
 				log.println("Unfortunatly, you died.");
 			} else {
