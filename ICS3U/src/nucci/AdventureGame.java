@@ -41,10 +41,18 @@ public class AdventureGame {
 	public static void main(String[] args) throws InterruptedException {
 
 		//make a console
-		Console log = new Console(50, 150);
+		Console log = new Console(40, 150);
+		
+		//make all text green
 		log.setTextColour(Color.GREEN);
+		
+		//make the background colour black
 		log.setTextBackgroundColor(Color.BLACK);
+		
+		//refresh the colour scheme
 		log.clear();
+		
+		//assign buffered images a value
 		try{
 			loadingBar25 		= ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 25%.jpg"));
 			loadingBar50 		= ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 50%.jpg"));
@@ -54,6 +62,8 @@ public class AdventureGame {
 			camelPic 			= ImageIO.read(Testing.class.getResourceAsStream("/camel.jpg"));
 			castlePic			= ImageIO.read(Testing.class.getResourceAsStream("/castle.jpg"));
 			desertPic 			= ImageIO.read(Testing.class.getResourceAsStream("/desert.jpg"));
+			
+			//mock up a loading bar at 25%
 			log.drawImage(loadingBar25, 0, 0, 500, 500, null);
 			forestPathPic 		= ImageIO.read(Testing.class.getResourceAsStream("/Forest Path.jpg"));
 			forestPic 			= ImageIO.read(Testing.class.getResourceAsStream("/Forest.jpg"));
@@ -62,6 +72,8 @@ public class AdventureGame {
 			moreGuardsPic 		= ImageIO.read(Testing.class.getResourceAsStream("/more guards.jpg"));
 			moreDesertPic		= ImageIO.read(Testing.class.getResourceAsStream("/more desert.jpg"));
 			mummyPic 			= ImageIO.read(Testing.class.getResourceAsStream("/mummy.jpg"));
+			
+			//mock up a loading bar at 50%
 			log.drawImage(loadingBar50, 0, 0, 500, 500, null);
 			playerPic 			= ImageIO.read(Testing.class.getResourceAsStream("/player.jpg"));
 			princessPic 		= ImageIO.read(Testing.class.getResourceAsStream("/princess.jpg"));	
@@ -70,22 +82,38 @@ public class AdventureGame {
 			skeletonArmyPic 	= ImageIO.read(Testing.class.getResourceAsStream("/skeleton army.jpg"));		
 			swordPic 			= ImageIO.read(Testing.class.getResourceAsStream("/sword.jpg"));		
 			thronePic 			= ImageIO.read(Testing.class.getResourceAsStream("/throne.jpg"));	
+			
+			//mock up a loading bar at 75%
 			log.drawImage(loadingBar75, 0, 0, 500, 500, null);
 			trollPic 			= ImageIO.read(Testing.class.getResourceAsStream("/troll.jpg"));		
 			tunnelPic			= ImageIO.read(Testing.class.getResourceAsStream("/tunnel.jpg"));
 			yellowBrickRoadPic 	= ImageIO.read(Testing.class.getResourceAsStream("/yellow brick road.jpg"));
 			roadWithFriendsPic 	= ImageIO.read(Testing.class.getResourceAsStream("/Yellow_Brick_Road and friends.jpg"));
+			
+			//finish loading
 			log.drawImage(loadingBar100, 0, 0, 500, 500, null);
+			
+			//make sure everyone can see the final loading bar
 			Thread.sleep(500);
 		
-		
+		//handle all 'errors'
 		}catch(IOException e){
 			e.printStackTrace();
 		}
 
+		//make 2d array for the users inputs
 		String[][] userInput = new String[2][10];
+		
+		//and another 2d array for all error handling loops
+		boolean[] error = new boolean[20];
+		
+		//first user input value
 		String primaryChoice;
+		
+		//starting gold value
 		int gold = 25;
+		
+		//misc values for future use
 		@SuppressWarnings("unused")
 		boolean sword = false;
 		String riddle;
@@ -95,8 +123,6 @@ public class AdventureGame {
 		String replay;
 		String userGuess;
 		int triesMummy = 3;
-		boolean error = false;
-
 		
 		while (playAgain == true) {
 			do{
@@ -114,12 +140,14 @@ public class AdventureGame {
 
 			
 			if (primaryChoice.equalsIgnoreCase("forest")) {
+				do{
 				log.drawImage(forestPic, 0, 0, 5184/5, 3374/5, null);
 				log.println("The guards chase you into the forest! You get to a clearing, and see a large tree. Do you hide in the tree or keep running?");
 				log.println("(hide in tree/keep running)");
 				userInput[0][1] = log.readLine();
 				log.clear();
 				if (userInput[0][1].equalsIgnoreCase("hide in tree") || userInput[0][1].equalsIgnoreCase("hide in trees")) {
+					do{
 					log.println("You successfully climb the tree.");
 					log.println("The guards are confused, they look around trying to find your trail.");
 					log.println("You see some rocks up on the tree.");
@@ -145,6 +173,7 @@ public class AdventureGame {
 					//FIXME
 					if (userInput[0][3].equalsIgnoreCase("bridge") && death == false) {
 						for (int i = 2; i != 0; i--) {
+							log.drawImage(bridgePic, 0, 0, 1680, 1050, null);
 							log.println("As you are beginning to cross, a troll blocks your path!");
 							log.println("You tell the troll that you wish to pass, and he says he'll let you if you can get his riddle right in three guesses.");
 							log.println("The riddle is: What gets wetter as it drys?");
@@ -172,40 +201,59 @@ public class AdventureGame {
 							log.clear();
 						}
 					} else if (userInput[0][3].equalsIgnoreCase("yellow brick road") && death == false) {
-						log.println(
-								"You come across a girl, a tin man, a scarecrow and a lion who all look familier. Before you can remmber from where, they all attack you. You are dead.");
+						log.drawImage(roadWithFriendsPic, 0, 0, 600*2, 407*2, null);
+						log.println("You come across a girl, a tin man, a scarecrow and a lion who all look familier. Before you can remmber from where, they all attack you. You are dead.");
 						death = true;
 					} else {
 
 					}
 						}
 					} else if (userInput[0][1].equalsIgnoreCase("keep running")) {
-							log.println("The guards catch up to you! They kill you. You are dead.");
-						}	 else {
-							log.println("Please enter a valid option.");
-						}
+						log.println("The guards catch up to you! They kill you. You are dead.");
 					}
+					else {
+						log.println("Please enter a valid option.");
+						Thread.sleep(1000);
+						error[1] = true;
+					}
+				}while(error[2] = true);
+				}else{
+					log.println("Please enter a valid option.");
+					Thread.sleep(1000);
+					error[2] = true;
 				}
-			 else if (primaryChoice.equalsIgnoreCase("desert")) {
+				
+				}while(error[1] = true);
+				}
+			else if (primaryChoice.equalsIgnoreCase("desert")) {
+				log.drawImage(desertPic, 0, 0, 1920/2, 1280/2, null);
 				log.println("You come to a camel. Do you want to take it? (yes/no)");
 				userInput[1][0] = log.readLine();
 				log.clear();
 				if (userInput[1][0].equalsIgnoreCase("Yes")) {
-					log.println("You ride the camal until you approch a pyramid.");
+					log.drawImage(pyramidPic, 0, 0, 450*2, 362*2, null);
+					log.println("You ride the camel until you approch a pyramid.");
 					log.println("Do you enter?");
 					userInput[1][1] = log.readLine();
 					log.clear();
 					if (userInput[1][1].equalsIgnoreCase("yes")) {
+						log.drawImage(tunnelPic, 0, 0, 5760/6, 3840/6, null);
 						log.println("You enter the pyramid, unaware of what awaits you.");
 						log.println("You come to a tunnel.");
 						log.println("Would you like to enter the tunnel?");
 						userInput[1][2] = log.readLine();
 						log.clear();
+						
 						if (userInput[1][2].equalsIgnoreCase("yes")) {
+							log.drawImage(goldPic, 0, 0, (int)(1680/1.5), (int)(944/1.5), null);
 							log.println("You see a bag of gold being held by a dead corpse.");
-							log.println("You take it and move on.");
+							log.println("You take it and move on. (Type anything to continue)");
 							gold = gold + 10;
+							log.readLine();
+							log.clear();
 						}
+						
+						log.drawImage(mummyPic, 0, 0, 600, 780, null);
 						log.println("You keep walking until you come across a mummy.");
 						log.println("The mummy says:");
 						log.println("'All who enter here DIE!... Unless you can guess my number thats between 1 and 5'");
@@ -215,14 +263,14 @@ public class AdventureGame {
 						for (int i = 0; i < triesMummy; i++) {
 							userGuess = log.readLine();
 							if (userGuess.equals(mummyNumber) && i == 3) {
-								i = 0;
+								i = -1;
 								log.println("Wow... you got it on the first try.");
 								log.println("You must be a genius!");
 								log.println("I need a genius like you, to lead my army of skeletons!");
 								log.println("Go, lead my army and attack that wretched kingdom!");
 								log.println("Power hungry, you lead the army to the kingdom.");
 								log.println("You need a battle plan!");
-								log.println("Will you lay seige to the castle, or assult it head on?(seige/assult)");
+								log.println("Will you lay seige to the castle, or assault it head on?(seige/assault)");
 								userInput[1][3] = log.readLine();
 								log.clear();
 								if (userInput[1][3].equalsIgnoreCase("seige")) {
@@ -234,7 +282,7 @@ public class AdventureGame {
 									log.println("You are dead.");
 									death = true;
 
-								} else if (userInput[1][3].equalsIgnoreCase("assult")) {
+								} else if (userInput[1][3].equalsIgnoreCase("assault")) {
 									log.println("You charge your army at the castle.");
 									log.println("As bones start flying at you, you realize that all it takes is one hit to kill a skeleton.");
 									log.println("The defenders of the castle kill your army and you");
@@ -244,6 +292,7 @@ public class AdventureGame {
 									log.println("Please enter a valid input.");
 								}
 							} else if (userGuess.equals(mummyNumber) && i == 2) {
+								i = -1;
 								log.println("That is correct, you may leave.");
 								log.println("As you leave the pyramid, you come across a random portal.");
 								log.println("Do you use it?");
@@ -252,35 +301,44 @@ public class AdventureGame {
 								if (userInput[1][4].equalsIgnoreCase("yes")) {
 									log.println("You use the portal and it drops you off at home.");
 								} else {
-									log.println("You keep walking for a while until you begen to feel thursty.");
+									log.println("You keep walking for a while until you begen to feel thirsty.");
 									log.println("You died of dehydration.");
 									death = true;
 								}
 
 							} else if (userGuess.equals(mummyNumber) && i == 1) {
+								i = -1;
 								log.println("That is correct... however... I think I'm going to kill you anyways.");
-								log.println("Yoou are dead.");
+								log.println("You are dead.");
 								death = true;
 							} else {
-								log.println("That's wrong.");
+								log.println("That is wrong.");
 								log.println("You have " + Math.abs(i-2) + " tries left.");
+								Thread.sleep(250);
+								log.clear();
 							}
 						}
+					}
+					else if(userInput[1][1].equalsIgnoreCase("no")){
+						log.println("You drown in the quicksand you are standing in. You are dead.");
+						death = true;
 					}
 				} else {
 					log.println("You keep walking, and begin to feel tired. You start to feel thirsty. You die of dehydration.");
 					death = true;
 				}
 			} else {
-				error = true;
+				log.println("Please enter a valid option.");
+				Thread.sleep(1000);
+				error[0] = true;
 			}
-			} while(error);
+			} while(error[0]);
 			if (death = false) {
 				log.println("Congradulations! You win!");
 			} 
 			log.println("Here were your choices:");
 			if (primaryChoice.equalsIgnoreCase("Forest")){
-				log.println("Forest");
+				log.println(primaryChoice);
 				for (int i = 0; i < 10; i++) {
 					if (userInput[0][i] != null){
 						log.println(userInput[0][i]);
@@ -288,7 +346,7 @@ public class AdventureGame {
 				}
 			}
 			else if (primaryChoice.equalsIgnoreCase("Desert")){
-				log.println("Desert");
+				log.println(primaryChoice);
 				for (int i = 0; i < 10; i++) {
 					if (userInput[1][i] != null){
 						log.println(userInput[1][i]);
