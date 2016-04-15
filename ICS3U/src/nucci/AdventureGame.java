@@ -1,14 +1,11 @@
 package nucci;
 
 import java.awt.Color;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-//while(!Toolkit.getDefaultToolkit().prepareImage(img1,img1.getWidth(null),img1.getHeight(null),null)));
-//where img1 is the variable name of the image you want to load
 import hsa_new.Console;
 
 public class AdventureGame {
@@ -47,6 +44,7 @@ public class AdventureGame {
 		Console log = new Console(50, 150);
 		log.setTextColour(Color.GREEN);
 		log.setTextBackgroundColor(Color.BLACK);
+		log.clear();
 		try{
 			loadingBar25 		= ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 25%.jpg"));
 			loadingBar50 		= ImageIO.read(Testing.class.getResourceAsStream("/Loading Bar 50%.jpg"));
@@ -78,6 +76,7 @@ public class AdventureGame {
 			yellowBrickRoadPic 	= ImageIO.read(Testing.class.getResourceAsStream("/yellow brick road.jpg"));
 			roadWithFriendsPic 	= ImageIO.read(Testing.class.getResourceAsStream("/Yellow_Brick_Road and friends.jpg"));
 			log.drawImage(loadingBar100, 0, 0, 500, 500, null);
+			Thread.sleep(500);
 		
 		
 		}catch(IOException e){
@@ -87,7 +86,8 @@ public class AdventureGame {
 		String[][] userInput = new String[2][10];
 		String primaryChoice;
 		int gold = 25;
-		boolean sword;
+		@SuppressWarnings("unused")
+		boolean sword = false;
 		String riddle;
 		int triesTroll = 2;
 		boolean death = false;
@@ -95,10 +95,11 @@ public class AdventureGame {
 		String replay;
 		String userGuess;
 		int triesMummy = 3;
-		boolean error;
+		boolean error = false;
 
 		
 		while (playAgain == true) {
+			do{
 			for (int i = 0; i < 10; i++){
 				userInput[0][i] = null;
 				userInput[1][i] = null;
@@ -111,8 +112,9 @@ public class AdventureGame {
 			primaryChoice = log.readLine();
 			log.clear();
 
-			do{
+			
 			if (primaryChoice.equalsIgnoreCase("forest")) {
+				log.drawImage(forestPic, 0, 0, 5184/5, 3374/5, null);
 				log.println("The guards chase you into the forest! You get to a clearing, and see a large tree. Do you hide in the tree or keep running?");
 				log.println("(hide in tree/keep running)");
 				userInput[0][1] = log.readLine();
@@ -133,36 +135,34 @@ public class AdventureGame {
 							death = true;
 
 						} else {
-							log.println("You hit the guards and kill them. You climb down and steal some of their gold, along with a sword as a weapon");
+							log.println("You hit the guards and kill them. You climb down and steal some of their gold, along with a sword as a weapon!");
 							sword = true;
 
-						}
-					
-
-					log.println("You come across a cross roads. One path leads to a bridge, the other goes to a yellow brick road. Where would you like to go?(bridge/yellow brick road)");
+					log.println("You come across a cross roads.");
+					log.println("One path leads to a bridge, the other goes to a yellow brick road. Where would you like to go?(bridge/yellow brick road)");
 					userInput[0][3] = log.readLine();
 					log.clear();
-					if (userInput[0][3].equalsIgnoreCase("the bridge") && death == false) {
-						log.println("As you are beggening to cross, a troll blocks your path!You tell the troll that you wish to pass, and he says he'll let you if you can get his riddle right in three guess's. The riddle is: What gets wetter as it drys?");
+					//FIXME
+					if (userInput[0][3].equalsIgnoreCase("bridge") && death == false) {
 						for (int i = 2; i != 0; i--) {
+							log.println("As you are beginning to cross, a troll blocks your path!");
+							log.println("You tell the troll that you wish to pass, and he says he'll let you if you can get his riddle right in three guesses.");
+							log.println("The riddle is: What gets wetter as it drys?");
 							riddle = log.readLine();
 							if (riddle.equalsIgnoreCase("towel") && i == 3) {
 								log.println("The troll says 'that is correct, you may procced!'");
 								i = 0;
-
 							} else if (riddle.equalsIgnoreCase("towel")) {
-								log.println(
-										"The trool says 'correct, but you didnt get it on the first try! I know I said I'd give you 3 tries, but i lied.' The troll eats you, you are dead.");
-							} else if (!riddle.equals("towel")) {
-								log.println("The troll says 'wrong, try again.' You have " + i + " guesses left");
+								log.println("The troll says 'correct, but you didnt get it on the first try! I know I said I'd give you 3 tries, but i lied.' The troll eats you, you are dead.");
+							} else {
+								log.println("The troll says 'wrong, try again.' You have " + Math.abs(i-2) + " guesses left");
 								triesTroll--;
 							}
 							log.clear();
-
+					//FIXME		
 						}
 						if (triesTroll == 0) {
-							log.println(
-									"The troll says 'Sorry, you're out of tries. I'm gonna eat you now.' You turn around and try to run, but see 3 guards approching. The troll notices them, looks at you and says 'dont move.' The troll lunges himself at the guards, but before you get a chance to run, the troll kills a gaurd and throws him at you. The two other gaurds kill the troll, and start approching you.");
+							log.println("The troll says 'Sorry, you're out of tries. I'm gonna eat you now.' You turn around and try to run, but see 3 guards approching. The troll notices them, looks at you and says 'dont move.' The troll lunges himself at the guards, but before you get a chance to run, the troll kills a gaurd and throws him at you. The two other gaurds kill the troll, and start approching you.");
 							if (sword = true) {
 								log.println("You pull out the sword you found earlier, and charge at the guards. Useing your agility, you manage to kill both of them. You steal their gold and cross the bridge, seeing your house in the distance.");
 							} else {
@@ -178,13 +178,15 @@ public class AdventureGame {
 					} else {
 
 					}
-				} else if (userInput[0][1].equalsIgnoreCase("keep running")) {
-					log.println("The guards catch up to you! They kill you. You are dead.");
-				} else {
-					log.println("Please enter a valid option.");
+						}
+					} else if (userInput[0][1].equalsIgnoreCase("keep running")) {
+							log.println("The guards catch up to you! They kill you. You are dead.");
+						}	 else {
+							log.println("Please enter a valid option.");
+						}
+					}
 				}
-				}
-			} else if (primaryChoice.equalsIgnoreCase("desert")) {
+			 else if (primaryChoice.equalsIgnoreCase("desert")) {
 				log.println("You come to a camel. Do you want to take it? (yes/no)");
 				userInput[1][0] = log.readLine();
 				log.clear();
@@ -206,8 +208,7 @@ public class AdventureGame {
 						}
 						log.println("You keep walking until you come across a mummy.");
 						log.println("The mummy says:");
-						log.println(
-								"'All who enter here DIE!... Unless you can guess my number thats between 1 and 5'");
+						log.println("'All who enter here DIE!... Unless you can guess my number thats between 1 and 5'");
 						log.println("You have three guesses.");
 
 						int mummyNumber = (int) (Math.random() * 3);
@@ -216,8 +217,8 @@ public class AdventureGame {
 							if (userGuess.equals(mummyNumber) && i == 3) {
 								i = 0;
 								log.println("Wow... you got it on the first try.");
-								log.println("You must be a genuis!");
-								log.println("I need a genuis like you, to lead my army of skeletons!");
+								log.println("You must be a genius!");
+								log.println("I need a genius like you, to lead my army of skeletons!");
 								log.println("Go, lead my army and attack that wretched kingdom!");
 								log.println("Power hungry, you lead the army to the kingdom.");
 								log.println("You need a battle plan!");
@@ -225,21 +226,17 @@ public class AdventureGame {
 								userInput[1][3] = log.readLine();
 								log.clear();
 								if (userInput[1][3].equalsIgnoreCase("seige")) {
-									log.println(
-											"You lay seige for three gruleng months, until the kingdom finally surrender.");
-									log.println(
-											"You take over as the new king, marry the princess, and live happily ever after...");
+									log.println("You lay seige for three gruleng months, until the kingdom finally surrender.");
+									log.println("You take over as the new king, marry the princess, and live happily ever after...");
 									Thread.sleep(2000);
-									log.println(
-											"For all of two hours until the mummy comes back demanding the throne.");
+									log.println("For all of two hours until the mummy comes back demanding the throne.");
 									log.println("He kills you.");
 									log.println("You are dead.");
 									death = true;
 
 								} else if (userInput[1][3].equalsIgnoreCase("assult")) {
 									log.println("You charge your army at the castle.");
-									log.println(
-											"As bones start flying at you, you realize that all it takes is one hit to a skelleton to kill it.");
+									log.println("As bones start flying at you, you realize that all it takes is one hit to kill a skeleton.");
 									log.println("The defenders of the castle kill your army and you");
 									log.println("You are dead.");
 									death = true;
@@ -266,7 +263,7 @@ public class AdventureGame {
 								death = true;
 							} else {
 								log.println("That's wrong.");
-								log.println("You have " + i + " tries left.");
+								log.println("You have " + Math.abs(i-2) + " tries left.");
 							}
 						}
 					}
@@ -277,11 +274,11 @@ public class AdventureGame {
 			} else {
 				error = true;
 			}
-			} while(!(error = true));
+			} while(error);
 			if (death = false) {
 				log.println("Congradulations! You win!");
 			} 
-			log.println("Here are your choices:");
+			log.println("Here were your choices:");
 			if (primaryChoice.equalsIgnoreCase("Forest")){
 				log.println("Forest");
 				for (int i = 0; i < 10; i++) {
@@ -297,11 +294,14 @@ public class AdventureGame {
 						log.println(userInput[1][i]);
 					}
 				}
+			}else {
+				log.println(primaryChoice);
 			}
 			
 			log.println("You accumulated " + gold + " gold on your journey.");
 			log.println("Would you like to play again?");
 			replay = log.readLine();
+			
 			if (replay.equalsIgnoreCase("No")) {
 				playAgain = false;
 				log.println("Well thats rude. :(");
@@ -312,9 +312,7 @@ public class AdventureGame {
 			{
 				playAgain = true;
 			}
-
+			
 		}
-
 	}
-
 }
