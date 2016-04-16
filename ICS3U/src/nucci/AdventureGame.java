@@ -11,32 +11,32 @@ import hsa_new.Console;
 public class AdventureGame {
 
 	// make all the buffered Images for the pictures that you want
-	public static BufferedImage bridgePic = null;
-	public static BufferedImage camelPic = null;
-	public static BufferedImage castlePic = null;
-	public static BufferedImage desertPic = null;
-	public static BufferedImage forestPathPic = null;
-	public static BufferedImage forestPic = null;
-	public static BufferedImage goldPic = null;
-	public static BufferedImage homePic = null;
-	public static BufferedImage loadingBar100 = null;
-	public static BufferedImage loadingBar75 = null;
-	public static BufferedImage loadingBar50 = null;
-	public static BufferedImage loadingBar25 = null;
-	public static BufferedImage moreGuardsPic = null;
-	public static BufferedImage moreDesertPic = null;
-	public static BufferedImage mummyPic = null;
-	public static BufferedImage playerPic = null;
-	public static BufferedImage princessPic = null;
-	public static BufferedImage pyramidHallwayPic = null;
-	public static BufferedImage pyramidPic = null;
-	public static BufferedImage skeletonArmyPic = null;
-	public static BufferedImage swordPic = null;
-	public static BufferedImage thronePic = null;
-	public static BufferedImage trollPic = null;
-	public static BufferedImage tunnelPic = null;
-	public static BufferedImage yellowBrickRoadPic = null;
-	public static BufferedImage roadWithFriendsPic = null;
+	public static BufferedImage bridgePic 				= null;
+	public static BufferedImage camelPic 				= null;
+	public static BufferedImage castlePic 				= null;
+	public static BufferedImage desertPic 				= null;
+	public static BufferedImage forestPathPic 		= null;
+	public static BufferedImage forestPic 				= null;
+	public static BufferedImage goldPic 				= null;
+	public static BufferedImage homePic 				= null;
+	public static BufferedImage loadingBar100 		= null;
+	public static BufferedImage loadingBar75 			= null;
+	public static BufferedImage loadingBar50 			= null;
+	public static BufferedImage loadingBar25 			= null;
+	public static BufferedImage moreGuardsPic			= null;
+	public static BufferedImage moreDesertPic 		= null;
+	public static BufferedImage mummyPic 				= null;
+	public static BufferedImage playerPic 				= null;
+	public static BufferedImage princessPic 			= null;
+	public static BufferedImage pyramidHallwayPic	= null;
+	public static BufferedImage pyramidPic 			= null;
+	public static BufferedImage skeletonArmyPic 		= null;
+	public static BufferedImage swordPic 				= null;
+	public static BufferedImage thronePic 				= null;
+	public static BufferedImage trollPic 				= null;
+	public static BufferedImage tunnelPic 				= null;
+	public static BufferedImage yellowBrickRoadPic 	= null;
+	public static BufferedImage roadWithFriendsPic 	= null;
 
 	public static void main(String[] args) throws InterruptedException {
 
@@ -147,8 +147,9 @@ public class AdventureGame {
 
 				// first branch
 				if (primaryChoice.equalsIgnoreCase("forest")) {
-					// FIXME to while loop second error handling loop
-					do {
+					noError[0] = true;
+					// second error handling loop
+					while (!noError[1]) {
 
 						//user output
 						log.drawImage(forestPic, 0, 0, 5184 / 5, 3374 / 5, null);
@@ -158,8 +159,8 @@ public class AdventureGame {
 						log.clear();
 						
 						if (userInput[0][1].equalsIgnoreCase("hide in tree") || userInput[0][1].equalsIgnoreCase("hide in trees")) {
-							//FIXME to while loop
-							do {
+							noError[1] = true;
+							while (!noError[2]) {
 								log.println("You successfully climb the tree.");
 								log.println("The guards are confused, they look around trying to find your trail.");
 								log.println("You see some rocks up on the tree.");
@@ -171,6 +172,7 @@ public class AdventureGame {
 								
 								//third layer of branching paths
 								if (userInput[0][2].equalsIgnoreCase("Yes")) {
+									noError[2] = true;
 									//FIXME TEMPORARY FOR DEBUGGING
 									int chance = 2;
 									//int chance = (int) (Math.random() * 3);
@@ -178,9 +180,10 @@ public class AdventureGame {
 										log.println("You miss, the guards spot you and kill you. You are dead.");
 										death = true;
 									} else {
-										log.println("You hit the guards and kill them. You climb down and steal some of their gold, along with a sword as a weapon!");
 										sword = true;
-
+										
+										while(!noError[3]){
+										log.println("You hit the guards and kill them. You climb down and steal some of their gold, along with a sword as a weapon!");
 										log.println("You come across a cross roads.");
 										log.println("One path leads to a bridge, the other goes to a yellow brick road. Where would you like to go?(bridge/yellow brick road)");
 										userInput[0][3] = log.readLine();
@@ -188,6 +191,7 @@ public class AdventureGame {
 
 										// FIXME \/
 										if (userInput[0][3].equalsIgnoreCase("bridge") && death == false) {
+											noError[3] = true;
 											for (int i = 2; i != 0; i--) {
 												log.drawImage(bridgePic, 0, 0, 1680, 1050, null);
 												log.println("As you are beginning to cross, a troll blocks your path!");
@@ -217,29 +221,45 @@ public class AdventureGame {
 												log.clear();
 											}
 										} else if (userInput[0][3].equalsIgnoreCase("yellow brick road") && death == false) {
+											noError[3] = true;
 											log.drawImage(roadWithFriendsPic, 0, 0, 600 * 2, 407 * 2, null);
 											log.println("You come across a girl, a tin man, a scarecrow and a lion who all look familier. Before you can remmber from where, they all attack you. You are dead.");
 											death = true;
 										} else {
-
+											noError[3] = false;
+											log.println("Please enter a valid option.");
+											Thread.sleep(1000);
+											log.clear();
 										}
 									}
-								} else if (userInput[0][1].equalsIgnoreCase("keep running")) {
-									log.println("The guards catch up to you! They kill you. You are dead.");
-								} else {
+								}
+								} else if (userInput[0][2].equalsIgnoreCase("No")){
+									noError[2] = true;
+									log.println("The guards spot you and kill you. You are dead.");
+									death = true;
+								}
+								else {
+									noError[2] = false;
 									log.println("Please enter a valid option.");
 									Thread.sleep(1000);
-									noError[1] = true;
+									log.clear();
 								}
-							} while (noError[2] = true);
-						} else {
-							log.println("Please enter a valid option.");
-							Thread.sleep(1000);
-							noError[2] = true;
-						}
+						} 
+					} else if (userInput[0][1].equalsIgnoreCase("keep running")) {
+						noError[1] = true;
+						log.println("The guards catch up to you! They kill you. You are dead.");
+						death = true;
+					}
+					else {
+						noError[1] = false;
+						log.println("Please enter a valid option.");
+						Thread.sleep(1000);
+						log.clear();
+					}
 
-					} while (noError[1] = true);
+					} 
 				} else if (primaryChoice.equalsIgnoreCase("desert")) {
+					noError[0] = true;
 					log.drawImage(desertPic, 0, 0, 1920 / 2, 1280 / 2, null);
 					log.println("You come to a camel. Do you want to take it? (yes/no)");
 					userInput[1][0] = log.readLine();
@@ -341,9 +361,10 @@ public class AdventureGame {
 						death = true;
 					}
 				} else {
+					noError[0] = false;
 					log.println("Please enter a valid option.");
 					Thread.sleep(1000);
-					noError[0] = false;
+					log.clear();
 				}
 			} 
 			if (death = false) {
@@ -379,6 +400,9 @@ public class AdventureGame {
 				log.close();
 			} else if (replay.equalsIgnoreCase("Yes")) {
 				playAgain = true;
+				for (int i = 0; i < 20; i++) {
+					noError[i] = false; 
+				}
 			}
 
 		}
