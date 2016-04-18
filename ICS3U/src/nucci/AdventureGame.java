@@ -6,9 +6,6 @@ package nucci;
  * This is an adventure game mostly made of nested ifs, the objective is no to die
  * */
 
-
-
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -101,9 +98,7 @@ public class AdventureGame {
 			trollPic = ImageIO.read(AdventureGame.class.getResourceAsStream("/troll.jpg"));
 			tunnelPic = ImageIO.read(AdventureGame.class.getResourceAsStream("/tunnel.jpg"));
 			yellowBrickRoadPic = ImageIO.read(AdventureGame.class.getResourceAsStream("/yellow brick road.jpg"));
-			// roadWithFriendsPic =
-			// ImageIO.read(AdventureGame.class.getResourceAsStream("/Yellow_Brick_Road
-			// and friends.jpg"));
+			roadWithFriendsPic = ImageIO.read(AdventureGame.class.getResourceAsStream("/Yellow_Brick_Road and friends.jpg"));
 
 			// finish loading
 			log.drawImage(loadingBar100, 0, 0, 500, 500, null);
@@ -195,7 +190,7 @@ public class AdventureGame {
 								if (userInput[0][2].equalsIgnoreCase("Yes")) {
 									noError[2] = true;
 
-									//make number for random chance
+									// make number for random chance
 									int chance = (int) (Math.random() * 3);
 									if (chance == 0 || chance == 1) {
 										log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
@@ -204,7 +199,7 @@ public class AdventureGame {
 									} else {
 										sword = true;
 
-										//tell user info
+										// tell user info
 										while (!noError[3]) {
 											log.drawImage(yellowBrickRoadPic, 0, 0, 600, 315, null);
 											log.println("You hit the guards and kill them. You climb down and steal some of their gold, along with a sword as a weapon!");
@@ -213,7 +208,7 @@ public class AdventureGame {
 											userInput[0][3] = log.readLine();
 											log.clear();
 
-											//bridge route
+											// bridge route
 											if (userInput[0][3].equalsIgnoreCase("bridge") && death == false) {
 												noError[3] = true;
 												for (int i = 3; i != 0; i--) {
@@ -223,15 +218,17 @@ public class AdventureGame {
 													log.println("You tell the troll that you wish to pass, and he says he'll let you if you can get his riddle right in three guesses.");
 													log.println("The riddle is: What gets wetter as it drys?");
 													riddle = log.readLine();
-													
-													//the correct answer for the troll question on the first try
+
+													// the correct answer for
+													// the troll question on the
+													// first try
 													if (riddle.equalsIgnoreCase("a towel") && i == 2) {
 														log.clear();
 														log.println("The troll says 'that is correct, you may procced!'");
 														death = false;
 														break;
-														
-														//or he kills you
+
+														// or he kills you
 													} else if (riddle.equalsIgnoreCase("a towel")) {
 														log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 														log.println("The troll says 'correct, but you didnt get it on the first try! I know I said I'd give you 3 tries, but i lied.' The troll eats you, you are dead.");
@@ -255,7 +252,7 @@ public class AdventureGame {
 
 												}
 
-												//yellow brick road route
+												// yellow brick road route
 											} else if (userInput[0][3].equalsIgnoreCase("yellow brick road") && death == false) {
 												noError[3] = true;
 												log.drawImage(roadWithFriendsPic, 0, 0, 600 * 2, 407 * 2, null);
@@ -294,8 +291,7 @@ public class AdventureGame {
 						}
 
 					}
-					
-				
+
 				} else if (primaryChoice.equalsIgnoreCase("desert")) {
 					noError[0] = true;
 					while (!noError[4]) {
@@ -321,7 +317,8 @@ public class AdventureGame {
 										userInput[1][2] = log.readLine();
 										log.clear();
 
-										//if the choice isn't yes or no, loop back
+										// if the choice isn't yes or no, loop
+										// back
 										if (!userInput[1][2].equalsIgnoreCase("yes") && !userInput[1][2].equalsIgnoreCase("no")) {
 											noError[7] = false;
 											log.println("Please enter a valid option.");
@@ -340,7 +337,7 @@ public class AdventureGame {
 										}
 										if (userInput[1][2].equalsIgnoreCase("no")) {
 											noError[7] = true;
-											// ^ don't loop back 
+											// ^ don't loop back
 										}
 
 									}
@@ -351,7 +348,7 @@ public class AdventureGame {
 									log.println("You have three guesses. (1, 2, 3, 4, 5)");
 
 									int mummyNumber = (int) ((Math.random() * 5) + 1);
-									
+
 									for (int i = 1; i <= triesMummy && i > 0; i++) {
 										userGuess = log.readLine();
 										log.clear();
@@ -407,7 +404,8 @@ public class AdventureGame {
 												if (userInput[1][4].equalsIgnoreCase("yes")) {
 													noError[8] = true;
 													log.println("You use the portal and it drops you off at home.");
-													//dont kill the player this time
+													// dont kill the player this
+													// time
 													break;
 												} else if (userInput[1][4].equalsIgnoreCase("no")) {
 													log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
@@ -455,6 +453,7 @@ public class AdventureGame {
 							}
 						} else if (userInput[1][0].equalsIgnoreCase("no")) {
 							noError[4] = true;
+							log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 							log.println("You keep walking, and begin to feel tired. You start to feel thirsty. You die of dehydration.");
 							KillPlayer();
 						} else {
@@ -473,13 +472,13 @@ public class AdventureGame {
 			}
 			noError[19] = false;
 			while (!noError[19]) {
-				
-				//if you didn't die, you win
+
+				// if you didn't die, you win
 				if (!death) {
 					log.println("Congradulations! You win!");
 				}
-				
-				//show choices
+
+				// show choices
 				log.println("Here were your choices:");
 				if (primaryChoice.equalsIgnoreCase("Forest")) {
 					log.println(primaryChoice);
@@ -499,20 +498,20 @@ public class AdventureGame {
 					log.println(primaryChoice);
 				}
 
-				//print gold
+				// print gold
 				log.println("You accumulated " + gold + " gold on your journey.");
 				log.println("Would you like to play again?");
 				replay = log.readLine();
 
-				//dont loop back if they don't want to...
+				// dont loop back if they don't want to...
 				if (replay.equalsIgnoreCase("No")) {
 					noError[19] = true;
 					playAgain = false;
 					log.println("Well thats rude. :(");
 					Thread.sleep(1000);
 					log.close();
-					
-					//and do if they do want to
+
+					// and do if they do want to
 				} else if (replay.equalsIgnoreCase("Yes")) {
 					playAgain = true;
 					for (int i = 0; i < 20; i++) {
