@@ -17,19 +17,20 @@ public class WordGuessingGame {
 		for (int i = 0; i < words[randomWord].length(); i++) {
 			wordDashes[i] = '-';
 		}
-		
+
 		for (int i = 0; i < words[randomWord].length(); i++) {
 			System.out.print(wordDashes[i]);
 		}
 		String userGuess = "thisisnotnull";
+		String guessWord;
 
 		while (!userGuess.equalsIgnoreCase("!") && !dashes) {
-			for(int i = 0; i < wordDashes[i]; i++){
-				if (wordDashes[i] == '-'){
+			for (int i = 0; i < wordDashes[i]; i++) {
+				if (wordDashes[i] == '-') {
 					dashes = false;
 					break;
 				}
-				if (wordDashes[i] != '-'){
+				if (wordDashes[i] != '-') {
 					dashes = true;
 				}
 			}
@@ -37,12 +38,12 @@ public class WordGuessingGame {
 			System.out.println("Enter a letter (or a ! to guess the word)");
 			userGuess = read.nextLine();
 		}
-		
-		if(!dashes){
+
+		if (!dashes) {
 			System.out.println("You guessed the word, it was " + words[randomWord]);
-		}
-		else{
-			System.out.println("");
+		} else {
+			System.out.println("What is your guess for the word?");
+			guessWord = read.nextLine();
 		}
 	}
 
