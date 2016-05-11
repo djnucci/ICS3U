@@ -14,7 +14,7 @@ public class WordGuessingGame {
 	public static void main(String[] args) {
 
 		// my list of words
-		String[] words = new String[]{"gyro", "do", "you", "often", "need", "to", "take", "spreadsheet", "of", "data", "and", "convert", "comma", "list", "special", "philatelist"};
+		String[] words = new String[]{"Shrek", "gyro", "do", "you", "often", "need", "to", "take", "spreadsheet", "of", "data", "and", "convert", "comma", "list", "special", "philatelist", "antidisestablishmentarianism", "hippopotomonstrosesquippedaliophobia"};
 		Scanner read = new Scanner(System.in);
 
 		// pick a random word from my words
@@ -71,6 +71,7 @@ public class WordGuessingGame {
 				//add a guess
 				numGuesses++;
 			}
+			userGuess = userGuess.substring(0, 1);
 		}
 
 		//if you won with dashes you win automatically
@@ -98,7 +99,8 @@ public class WordGuessingGame {
 		}
 		
 		//tel them the number of guesses it took for them to have lost/won
-		System.out.println("It took you " + numGuesses + " guesses to come to that answer.");
+		System.out.println("It took you " + numGuesses + " guess(es) to come to that answer.");
 	}
+
 
 }
