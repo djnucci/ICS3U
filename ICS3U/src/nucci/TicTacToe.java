@@ -15,22 +15,32 @@ public class TicTacToe {
 		int xSize = 3;
 		int ySize = 3;
 		char[][] board = new char[xSize][ySize];
+		
+		for(int i = 0; i < ySize; i++){
+			for(int j = 0; j < xSize; j++){
+				board[j][i] = ' ';
+			}
+		}
 
 		String userInput = "";
 
 		for (int i = 0; i < (xSize * ySize); i++) {
 			if (i % 2 == 0) {
 				currentPlayer = 'O';
-				System.out.println("Player 1 enter your coordinants (x,y)");
+				System.out.println("Player 1 enter your coordinants: xValue.yValue");
 			} else {
 				currentPlayer = 'X';
-				System.out.println("Player 2 enter your coordinants (x,y)");
+				System.out.println("Player 2 enter your coordinants: xValue.yValue");
 			}
 
 			userInput = read.nextLine();
 			splitInput(userInput);
-			board[coords[0] - 1][coords[1] - 1] = currentPlayer;
-
+			if(board[coords[0] - 1][coords[1] - 1] != ' '){
+				board[coords[0] - 1][coords[1] - 1] = currentPlayer;
+			}
+			else{
+				System.out.println("You are the worst kind of person: a cheater");
+			}
 			makeSquare(board);
 		}
 
