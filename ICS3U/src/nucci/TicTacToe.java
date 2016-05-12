@@ -12,12 +12,15 @@ public class TicTacToe {
 
 		char currentPlayer = 'O';
 
+		boolean p1Cheater = false;
+		boolean p2Cheater = false;
+
 		int xSize = 3;
 		int ySize = 3;
 		char[][] board = new char[xSize][ySize];
-		
-		for(int i = 0; i < ySize; i++){
-			for(int j = 0; j < xSize; j++){
+
+		for (int i = 0; i < ySize; i++) {
+			for (int j = 0; j < xSize; j++) {
 				board[j][i] = ' ';
 			}
 		}
@@ -28,18 +31,26 @@ public class TicTacToe {
 			if (i % 2 == 0) {
 				currentPlayer = 'O';
 				System.out.println("Player 1 enter your coordinants: xValue.yValue");
-			} else {
+			}
+			else {
 				currentPlayer = 'X';
 				System.out.println("Player 2 enter your coordinants: xValue.yValue");
 			}
 
 			userInput = read.nextLine();
 			splitInput(userInput);
-			if(board[coords[0] - 1][coords[1] - 1] != ' '){
+			if (board[coords[0] - 1][coords[1] - 1] == ' ') {
 				board[coords[0] - 1][coords[1] - 1] = currentPlayer;
 			}
-			else{
+			else {
 				System.out.println("You are the worst kind of person: a cheater");
+				if (currentPlayer == 'O') {
+					p1Cheater = true;
+				}
+				else if (currentPlayer == 'X') {
+					p2Cheater = true;
+				}
+				break;
 			}
 			makeSquare(board);
 		}
@@ -47,7 +58,7 @@ public class TicTacToe {
 	}
 
 	public static void makeSquare(char[][] ID) {
-		System.out.println("______________________________");
+		System.out.println("._____________________________.");
 		System.out.println("|         |         |         |");
 		System.out.println("|    " + ID[0][0] + "    |    " + ID[0][1] + "    |    " + ID[0][2] + "    |");
 		System.out.println("|_________|_________|_________|");
@@ -65,4 +76,55 @@ public class TicTacToe {
 		coords[0] = splitInput[0] - 48;
 		coords[1] = splitInput[2] - 48;
 	}
+	public static boolean checkWinner(char[][] ID) {
+		if (ID[0][0] != ' ' && ID[0][1] != ' ' && ID[0][2] != ' ' && ID[1][0] != ' ' && ID[1][1] != ' ' && ID[1][2] != ' ' && ID[2][0] != ' ' && ID[2][1] != ' ' && ID[2][2] != ' ') {
+			if (ID[0][0] == ID[0][1] && ID[0][1] == ID[0][2]) {
+				return true;
+			}
+			else if (ID[1][0] == ID[1][1] && ID[1][1] == ID[1][2]) {
+				return true;
+			}
+			else if (ID[2][0] == ID[2][1] && ID[2][1] == ID[2][2]) {
+				return true;
+			}
+			else if (ID[0][0] == ID[1][0] && ID[1][0] == ID[2][0]) {
+				return true;
+			}
+			else if (ID[0][1] == ID[1][1] && ID[1][1] == ID[2][1]) {
+				return true;
+			}
+			else if (ID[0][2] == ID[1][2] && ID[1][2] == ID[2][2]) {
+				return true;
+			}
+			else if (ID[0][0] == ID[1][1] && ID[1][1] == ID[2][2]) {
+				return true;
+			}
+			else if (ID[0][2] == ID[1][1] && ID[1][1] == ID[2][0]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static String chooseWinner(char[][] ID, boolean oneCheat, boolean twoCheat) {
+		if(oneCheat){
+			return "Player 2";
+		}
+		else if(twoCheat){
+			return "Player 1";
+		}
+		
+		
+		return "NaN";
+
+	}
 }
+
+
+
+
+
+
+
+
+
