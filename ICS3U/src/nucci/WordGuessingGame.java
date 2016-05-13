@@ -14,7 +14,7 @@ public class WordGuessingGame {
 	public static void main(String[] args) {
 
 		// my list of words
-		String[] words = new String[]{"Shrek", "gyro", "do", "you", "often", "need", "to", "take", "spreadsheet", "of", "data", "and", "convert", "comma", "list", "special", "philatelist", "antidisestablishmentarianism", "hippopotomonstrosesquippedaliophobia"};
+		String[] words = new String[]{"shrek", "gyro", "do", "you", "often", "need", "to", "take", "spreadsheet", "of", "data", "and", "convert", "comma", "list", "special", "philatelist", "antidisestablishmentarianism", "hippopotomonstrosesquippedaliophobia"};
 		Scanner read = new Scanner(System.in);
 
 		// pick a random word from my words

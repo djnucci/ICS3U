@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-	public static int[] coords = new int[2];
+	protected static int[] coords = new int[2];
 
 	public static void main(String[] args) {
 
@@ -53,7 +53,12 @@ public class TicTacToe {
 				break;
 			}
 			makeSquare(board);
+			if (checkWinner(board)) {
+				break;
+			}
 		}
+
+		System.out.println(chooseWinner(board, p1Cheater, p2Cheater) + " won the Game!");
 
 	}
 
@@ -68,55 +73,101 @@ public class TicTacToe {
 		System.out.println("|         |         |         |");
 		System.out.println("|    " + ID[2][0] + "    |    " + ID[2][1] + "    |    " + ID[2][2] + "    |");
 		System.out.println("|_________|_________|_________|");
-
 	}
+	
 	public static void splitInput(String input) {
 		char[] splitInput = input.toCharArray();
 
 		coords[0] = splitInput[0] - 48;
 		coords[1] = splitInput[2] - 48;
 	}
+	
 	public static boolean checkWinner(char[][] ID) {
-		if (ID[0][0] != ' ' && ID[0][1] != ' ' && ID[0][2] != ' ' && ID[1][0] != ' ' && ID[1][1] != ' ' && ID[1][2] != ' ' && ID[2][0] != ' ' && ID[2][1] != ' ' && ID[2][2] != ' ') {
-			if (ID[0][0] == ID[0][1] && ID[0][1] == ID[0][2]) {
-				return true;
-			}
-			else if (ID[1][0] == ID[1][1] && ID[1][1] == ID[1][2]) {
-				return true;
-			}
-			else if (ID[2][0] == ID[2][1] && ID[2][1] == ID[2][2]) {
-				return true;
-			}
-			else if (ID[0][0] == ID[1][0] && ID[1][0] == ID[2][0]) {
-				return true;
-			}
-			else if (ID[0][1] == ID[1][1] && ID[1][1] == ID[2][1]) {
-				return true;
-			}
-			else if (ID[0][2] == ID[1][2] && ID[1][2] == ID[2][2]) {
-				return true;
-			}
-			else if (ID[0][0] == ID[1][1] && ID[1][1] == ID[2][2]) {
-				return true;
-			}
-			else if (ID[0][2] == ID[1][1] && ID[1][1] == ID[2][0]) {
-				return true;
-			}
+		if ((ID[0][0] == ID[0][1] && ID[0][1] == ID[0][2]) && ID[0][1] != ' ') {
+			return true;
+		}
+		else if ((ID[1][0] == ID[1][1] && ID[1][1] == ID[1][2]) && ID[1][1] != ' ') {
+			return true;
+		}
+		else if ((ID[2][0] == ID[2][1] && ID[2][1] == ID[2][2]) && ID[2][1] != ' ') {
+			return true;
+		}
+		else if ((ID[0][0] == ID[1][0] && ID[1][0] == ID[2][0]) && ID[1][0] != ' ') {
+			return true;
+		}
+		else if ((ID[0][1] == ID[1][1] && ID[1][1] == ID[2][1]) && ID[1][1] != ' ') {
+			return true;
+		}
+		else if ((ID[0][2] == ID[1][2] && ID[1][2] == ID[2][2]) && ID[1][2] != ' ') {
+			return true;
+		}
+		else if ((ID[0][0] == ID[1][1] && ID[1][1] == ID[2][2]) && ID[1][1] != ' ') {
+			return true;
+		}
+		else if ((ID[0][2] == ID[1][1] && ID[1][1] == ID[2][0]) && ID[1][1] != ' ') {
+			return true;
 		}
 		return false;
 	}
 
 	public static String chooseWinner(char[][] ID, boolean oneCheat, boolean twoCheat) {
-		if(oneCheat){
+		if (oneCheat) {
 			return "Player 2";
 		}
-		else if(twoCheat){
+		else if (twoCheat) {
 			return "Player 1";
 		}
-		
-		
-		return "NaN";
-
+		else {
+			if ((ID[0][0] == ID[0][1] && ID[0][1] == ID[0][2]) && ID[0][1] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[1][0] == ID[1][1] && ID[1][1] == ID[1][2]) && ID[1][1] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[2][0] == ID[2][1] && ID[2][1] == ID[2][2]) && ID[2][1] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[0][0] == ID[1][0] && ID[1][0] == ID[2][0]) && ID[1][0] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[0][1] == ID[1][1] && ID[1][1] == ID[2][1]) && ID[1][1] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[0][2] == ID[1][2] && ID[1][2] == ID[2][2]) && ID[1][2] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[0][0] == ID[1][1] && ID[1][1] == ID[2][2]) && ID[1][1] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[0][2] == ID[1][1] && ID[1][1] == ID[2][0]) && ID[1][1] == 'O') {
+				return "Player 1";
+			}
+			else if ((ID[0][0] == ID[0][1] && ID[0][1] == ID[0][2]) && ID[0][1] == 'X') {
+				return "Player 2";
+			}
+			else if ((ID[1][0] == ID[1][1] && ID[1][1] == ID[1][2]) && ID[1][1] == 'X') {
+				return "Player 2";
+			}
+			else if ((ID[2][0] == ID[2][1] && ID[2][1] == ID[2][2]) && ID[2][1] == 'X') {
+				return "Player 2";
+			}
+			else if ((ID[0][0] == ID[1][0] && ID[1][0] == ID[2][0]) && ID[1][0] == 'X') {
+				return "Player 2";
+			}
+			else if ((ID[0][1] == ID[1][1] && ID[1][1] == ID[2][1]) && ID[1][1] == 'X') {
+				return "Player 2";
+			}
+			else if ((ID[0][2] == ID[1][2] && ID[1][2] == ID[2][2]) && ID[1][2] == 'X') {
+				return "Player 2";
+			}
+			else if ((ID[0][0] == ID[1][1] && ID[1][1] == ID[2][2]) && ID[1][1] == 'X') {
+				return "Player 2";
+			}
+			else if ((ID[0][2] == ID[1][1] && ID[1][1] == ID[2][0]) && ID[1][1] == 'X') {
+				return "Player 2";
+			}
+		}
+		return "No One";
 	}
 }
 
