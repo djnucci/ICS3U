@@ -297,7 +297,7 @@ public class WordWritingProgram {
 		System.out.println();
 	}
 	public static void drawSpace() {
-		System.out.println();// nine by five
+		System.out.println();
 		System.out.println();
 		System.out.println();
 		System.out.println();
