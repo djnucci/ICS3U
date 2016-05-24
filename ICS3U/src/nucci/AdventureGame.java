@@ -1,9 +1,9 @@
 package nucci;
-/*
- * Nucci and Jitesh
- * April 18th, 2016
+/**
+ * @author Nucci and Jitesh
+ * @version April 18th, 2016
  * AdventureGame.Java
- * This is an adventure game mostly made of nested ifs, the objective is no to die
+ * This is an adventure game mostly made of nested ifs, the objective is not to die
  * */
 
 import java.awt.Color;
@@ -107,7 +107,8 @@ public class AdventureGame {
 			Thread.sleep(500);
 
 			// handle all 'errors'
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 
@@ -196,7 +197,8 @@ public class AdventureGame {
 										log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 										log.println("You miss, the guards spot you and kill you. You are dead.");
 										KillPlayer();
-									} else {
+									}
+									else {
 										sword = true;
 
 										// tell user info
@@ -229,12 +231,14 @@ public class AdventureGame {
 														break;
 
 														// or he kills you
-													} else if (riddle.equalsIgnoreCase("a towel")) {
+													}
+													else if (riddle.equalsIgnoreCase("a towel")) {
 														log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 														log.println("The troll says 'correct, but you didnt get it on the first try! I know I said I'd give you 3 tries, but i lied.' The troll eats you, you are dead.");
 														KillPlayer();
 														break;
-													} else {
+													}
+													else {
 														log.println("The troll says 'wrong, try again.' You have " + i + " guesses left");
 														triesTroll--;
 														if (triesTroll == 0) {
@@ -253,12 +257,14 @@ public class AdventureGame {
 												}
 
 												// yellow brick road route
-											} else if (userInput[0][3].equalsIgnoreCase("yellow brick road") && death == false) {
+											}
+											else if (userInput[0][3].equalsIgnoreCase("yellow brick road") && death == false) {
 												noError[3] = true;
 												log.drawImage(roadWithFriendsPic, 0, 0, 600 * 2, 407 * 2, null);
 												log.println("You come across a girl, a tin man, a scarecrow and a lion who all look familier. Before you can remmber from where, they all attack you. You are dead.");
 												KillPlayer();
-											} else {
+											}
+											else {
 												noError[3] = false;
 												log.println("Please enter a valid option.");
 												Thread.sleep(1000);
@@ -266,24 +272,28 @@ public class AdventureGame {
 											}
 										}
 									}
-								} else if (userInput[0][2].equalsIgnoreCase("No")) {
+								}
+								else if (userInput[0][2].equalsIgnoreCase("No")) {
 									noError[2] = true;
 									log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 									log.println("The guards spot you and kill you. You are dead.");
 									KillPlayer();
-								} else {
+								}
+								else {
 									noError[2] = false;
 									log.println("Please enter a valid option.");
 									Thread.sleep(1000);
 									log.clear();
 								}
 							}
-						} else if (userInput[0][1].equalsIgnoreCase("keep running")) {
+						}
+						else if (userInput[0][1].equalsIgnoreCase("keep running")) {
 							log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 							noError[1] = true;
 							log.println("The guards catch up to you! They kill you. You are dead.");
 							KillPlayer();
-						} else {
+						}
+						else {
 							noError[1] = false;
 							log.println("Please enter a valid option.");
 							Thread.sleep(1000);
@@ -292,7 +302,8 @@ public class AdventureGame {
 
 					}
 
-				} else if (primaryChoice.equalsIgnoreCase("desert")) {
+				}
+				else if (primaryChoice.equalsIgnoreCase("desert")) {
 					noError[0] = true;
 					while (!noError[4]) {
 						log.drawImage(desertPic, 0, 0, 1920 / 2, 1280 / 2, null);
@@ -376,7 +387,8 @@ public class AdventureGame {
 													KillPlayer();
 													break;
 
-												} else if (userInput[1][3].equalsIgnoreCase("assault")) {
+												}
+												else if (userInput[1][3].equalsIgnoreCase("assault")) {
 													noError[6] = true;
 													log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 													log.println("You charge your army at the castle.");
@@ -385,7 +397,8 @@ public class AdventureGame {
 													log.println("You are dead.");
 													KillPlayer();
 													break;
-												} else {
+												}
+												else {
 													noError[6] = false;
 													log.println("Please enter a valid option.");
 													Thread.sleep(1000);
@@ -393,7 +406,8 @@ public class AdventureGame {
 												}
 											}
 
-										} else if (userGuess.equals(String.valueOf(mummyNumber)) && i == 2) {
+										}
+										else if (userGuess.equals(String.valueOf(mummyNumber)) && i == 2) {
 											i = -1;
 											while (!noError[8]) {
 												log.println("That is correct, you may leave.");
@@ -407,31 +421,36 @@ public class AdventureGame {
 													// dont kill the player this
 													// time
 													break;
-												} else if (userInput[1][4].equalsIgnoreCase("no")) {
+												}
+												else if (userInput[1][4].equalsIgnoreCase("no")) {
 													log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 													log.println("You keep walking for a while until you begen to feel thirsty.");
 													log.println("You died of dehydration.");
 													KillPlayer();
-												} else {
+												}
+												else {
 													noError[8] = false;
 													log.println("Please enter a valid option.");
 													Thread.sleep(1000);
 													log.clear();
 												}
 											}
-										} else if (userGuess.equals(String.valueOf(mummyNumber)) && i == 3) {
+										}
+										else if (userGuess.equals(String.valueOf(mummyNumber)) && i == 3) {
 											i = -1;
 											log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 											log.println("That is correct... however... I think I'm going to kill you anyways.");
 											log.println("You are dead.");
 											KillPlayer();
-										} else if (i == 3) {
+										}
+										else if (i == 3) {
 											i = -1;
 											log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 											log.println("The mummy kills you.");
 											log.println("You are dead.");
 											KillPlayer();
-										} else {
+										}
+										else {
 											log.println("That is wrong.");
 											log.println("You have " + Math.abs(i - 3) + " tries left.");
 											Thread.sleep(1000);
@@ -439,31 +458,36 @@ public class AdventureGame {
 											log.println("Try again.");
 										}
 									}
-								} else if (userInput[1][1].equalsIgnoreCase("no")) {
+								}
+								else if (userInput[1][1].equalsIgnoreCase("no")) {
 									noError[5] = true;
 									log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 									log.println("You drown in the quicksand you are standing in. You are dead.");
 									KillPlayer();
-								} else {
+								}
+								else {
 									noError[5] = false;
 									log.println("Please enter a valid option.");
 									Thread.sleep(1000);
 									log.clear();
 								}
 							}
-						} else if (userInput[1][0].equalsIgnoreCase("no")) {
+						}
+						else if (userInput[1][0].equalsIgnoreCase("no")) {
 							noError[4] = true;
 							log.drawImage(playerDeathPic, 0, 100, 1010, 547, null);
 							log.println("You keep walking, and begin to feel tired. You start to feel thirsty. You die of dehydration.");
 							KillPlayer();
-						} else {
+						}
+						else {
 							noError[4] = false;
 							log.println("Please enter a valid option.");
 							Thread.sleep(1000);
 							log.clear();
 						}
 					}
-				} else {
+				}
+				else {
 					noError[0] = false;
 					log.println("Please enter a valid option.");
 					Thread.sleep(1000);
@@ -487,14 +511,16 @@ public class AdventureGame {
 							log.println(userInput[0][i]);
 						}
 					}
-				} else if (primaryChoice.equalsIgnoreCase("Desert")) {
+				}
+				else if (primaryChoice.equalsIgnoreCase("Desert")) {
 					log.println(primaryChoice);
 					for (int i = 0; i < 10; i++) {
 						if (userInput[1][i] != null) {
 							log.println(userInput[1][i]);
 						}
 					}
-				} else {
+				}
+				else {
 					log.println(primaryChoice);
 				}
 
@@ -512,13 +538,15 @@ public class AdventureGame {
 					log.close();
 
 					// and do if they do want to
-				} else if (replay.equalsIgnoreCase("Yes")) {
+				}
+				else if (replay.equalsIgnoreCase("Yes")) {
 					playAgain = true;
 					for (int i = 0; i < 20; i++) {
 						noError[i] = false;
 					}
 					noError[19] = true;
-				} else {
+				}
+				else {
 					noError[19] = false;
 					log.clear();
 					log.println("Please enter a valid option.");

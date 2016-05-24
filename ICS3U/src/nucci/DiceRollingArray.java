@@ -1,5 +1,9 @@
 package nucci;
-
+/**
+ * ConsoleInput.java
+ * This program calculates the age of their mother when they were born
+ * @author Daniel Nucci
+ */
 public class DiceRollingArray {
 
 	public static void main(String[] args) {

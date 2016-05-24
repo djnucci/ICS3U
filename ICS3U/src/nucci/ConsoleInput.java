@@ -2,11 +2,11 @@ package nucci;
 
 import java.util.Scanner;
 
-/*
+/**
  * ConsoleInput.java
  * This program calculates the age of their mother when they were born
- * Daniel Nucci
- * March 8th, 2016
+ * @author Daniel Nucci
+ * @version March 8th, 2016
  */
 
 public class ConsoleInput {

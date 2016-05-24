@@ -2,11 +2,11 @@ package nucci;
 
 import java.util.Scanner;
 
-/*
+/**
  * ArithmaticExpressions.java
  * this program does a sequence of math calculations on 5 numbers provided by the user
- * Daniel Nucci
- * March 9th, 2016
+ * @author Daniel Nucci
+ * @version March 9th, 2016
  */
 
 public class ArithmaticExpressions {

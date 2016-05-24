@@ -1,5 +1,9 @@
 package nucci;
-
+/**
+ * @author Nucci
+ * AnimalGuessingGame.java
+ * an animal guessing game with a new way i found of adding objects to an array
+ * */
 import java.util.Scanner;
 
 public class AnimalGuessingGame {
