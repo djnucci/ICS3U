@@ -7,7 +7,7 @@ public class TicTacToe {
 	protected static int[] coords = new int[2];
 
 	public static void main(String[] args) {
-
+		
 		Scanner read = new Scanner(System.in);
 
 		char currentPlayer = 'O';
